@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekab Abdelkader</title>
+    <title>Page de Connexion - OAIC DZ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,16 +12,17 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
-            -webkit-user-select: none; /* Chrome, Safari, and Opera */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+            background: url('https://www.echaab.dz/static/medias/2023/10/images-2023-10-02T190415.748.jpeg') no-repeat center center fixed; /* رابط الصورة هنا */
+            background-size: cover; /* تكييف حجم الصورة لتغطية الخلفية */
+            -webkit-user-select: none; /* تعطيل تحديد النصوص على متصفحات Webkit */
+            -moz-user-select: none; /* تعطيل تحديد النصوص على Firefox */
+            -ms-user-select: none; /* تعطيل تحديد النصوص على IE/Edge */
+            user-select: none; /* تعطيل تحديد النصوص بشكل عام */
         }
         .login-container {
             border: 1px solid #ccc;
             padding: 20px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.8); /* خلفية شفافة قليلاً */
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             max-width: 400px; /* أقصى عرض للتصميم */
@@ -30,6 +31,8 @@
         .login-container h2 {
             margin-top: 0;
             text-align: center;
+            font-size: 1.8em;
+            color: #333;
         }
         .login-container input {
             width: 100%;
@@ -69,7 +72,7 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Connexion</h2>
+        <h2>Connexion - OAIC DZ</h2>
         <form id="loginForm">
             <input type="password" id="password" placeholder="Entrez le mot de passe" required>
             <button type="submit">Se Connecter</button>
@@ -81,20 +84,35 @@
             e.preventDefault();
         });
 
-        (function() {
-            var originalPassword = 'rekab12'; // كلمة المرور المشفرة
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var password = document.getElementById('password').value;
+            var correctPassword = '12345'; // كلمة المرور الصحيحة
 
-            document.getElementById('loginForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var password = document.getElementById('password').value;
+            if (password === correctPassword) {
+                window.location.href = 'https://rayendz.github.io/LieuOrg1/';
+            } else {
+                alert('Mot de passe incorrect. Essayez encore.');
 
-                if (password === originalPassword) {
-                    window.location.href = 'https://rayendz.github.io/LieuOrg1/';
-                } else {
-                    alert('Mot de passe incorrect. Essayez encore.');
-                }
-            });
-        })();
+                // إرسال معلومات محاولة الدخول إلى الخادم
+                fetch('/log_attempt', { // استبدل '/log_attempt' بعنوان URL الخاص بك
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'password': password,
+                        'status': 'failed'
+                    })
+                }).then(response => {
+                    if (!response.ok) {
+                        console.error('Erreur lors de l\'envoi des informations de tentative.');
+                    }
+                }).catch(error => {
+                    console.error('Erreur de réseau:', error);
+                });
+            }
+        });
     </script>
 </body>
 </html>
