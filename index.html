@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OAIC DZ</title>
+    <title>Page de Connexion - OAIC DZ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://www.echaab.dz/static/medias/2023/10/images-2023-10-02T190415.748.jpeg') no-repeat center center fixed; /* رابط الصورة هنا */
+            background-size: cover; /* تكييف حجم الصورة لتغطية الخلفية */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background: url('https://www.echaab.dz/static/medias/2023/10/images-2023-10-02T190415.748.jpeg') no-repeat center center fixed; /* رابط الصورة هنا */
-            background-size: cover; /* تكييف حجم الصورة لتغطية الخلفية */
             -webkit-user-select: none; /* تعطيل تحديد النصوص على متصفحات Webkit */
             -moz-user-select: none; /* تعطيل تحديد النصوص على Firefox */
             -ms-user-select: none; /* تعطيل تحديد النصوص على IE/Edge */
@@ -22,25 +23,25 @@
         .login-container {
             border: 1px solid #ccc;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* خلفية شفافة قليلاً */
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 400px; /* أقصى عرض للتصميم */
-            width: 100%; /* عرض كامل للحاوية */
+            background: rgba(255, 255, 255, 0.9); /* خلفية شفافة قليلاً */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            max-width: 90%;
+            width: 400px; /* أقصى عرض للحاوية */
+            text-align: center;
         }
         .login-container h2 {
             margin-top: 0;
-            text-align: center;
             font-size: 1.8em;
             color: #333;
         }
         .login-container input {
-            width: 100%;
+            width: calc(100% - 22px); /* عرض كامل مع بعض المسافة للحدود */
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
-            box-sizing: border-box; /* لضمان عدم تجاوز العنصر لعرض الحاوية */
+            box-sizing: border-box;
         }
         .login-container button {
             width: 100%;
@@ -50,7 +51,8 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            box-sizing: border-box; /* لضمان عدم تجاوز العنصر لعرض الحاوية */
+            box-sizing: border-box;
+            font-size: 1em;
         }
         .login-container button:hover {
             background: #0056b3; /* Bleu plus foncé */
@@ -60,12 +62,14 @@
         @media (max-width: 600px) {
             .login-container {
                 padding: 15px;
+                width: 90%;
             }
             .login-container h2 {
                 font-size: 1.5em;
             }
             .login-container input, .login-container button {
                 font-size: 1em;
+                padding: 12px;
             }
         }
     </style>
@@ -90,7 +94,7 @@
             var correctPassword = '12345'; // كلمة المرور الصحيحة
 
             if (password === correctPassword) {
-                window.location.href = 'https://rayendz.github.io/LieuOrg1/';
+                window.location.href = 'https://rayendz.github.io/LieuOrg/';
             } else {
                 alert('Mot de passe incorrect. Essayez encore.');
 
